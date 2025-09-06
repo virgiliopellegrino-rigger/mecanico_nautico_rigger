@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virgilio Pellegrino - Rigger y Mecánico Náutico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0a2c5e;
+            --secondary-color: #f8f9fa;
+            --accent-color: #d4af37;
+            --text-color: #333;
+            --light-text: #fff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f0f6ff;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        .hero {
+            background: linear-gradient(rgba(10, 44, 94, 0.85), rgba(10, 44, 94, 0.9)), url('https://images.unsplash.com/photo-1508002366005-75a695ee2d59?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: var(--light-text);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-color);
+        }
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+        section {
+            padding: 5rem 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 350px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        .service-card {
+            background-color: var(--secondary-color);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            border-top: 5px solid var(--primary-color);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+        }
+        .service-card p {
+            color: #555;
+        }
+        .experience-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        .experience-timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        .timeline-content {
+            padding: 25px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            border-left: 4px solid var(--accent-color);
+        }
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        .timeline-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -42px;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -42px;
+            right: auto;
+        }
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        .contact-text {
+            color: #555;
+        }
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        .contact-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        /* Estilo del formulario adaptado al diseño de la web */
+        .contact-form form label {
+            display: block;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .contact-form form input,
+        .contact-form form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .contact-form form input:focus,
+        .contact-form form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .contact-form form button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-color);
+            cursor: pointer;
+        }
+        .contact-form form button:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 3rem 0;
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .footer-logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        .copyright {
+            margin-top: 1.5rem;
+            color: #ccc;
+        }
+        .nautical-divider {
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="%230a2c5e"/></svg>') no-repeat center center/cover;
+            margin-bottom: -1px;
+        }
+        @media (max-width: 768px) {
+            .experience-timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-content::after {
+                left: -42px !important;
+                right: auto !important;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><i class="fas fa-anchor"></i>Virgilio Pellegrino</div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-mi">Sobre Mí</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#experiencias">Experiencias</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Servicios Profesionales de Rigger y Mecánica Náutica</h1>
+                <p>Más de 50,000 millas náuticas navegadas y una década de experiencia en la industria náutica</p>
+                <a href="#contacto" class="btn">Contactar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="nautical-divider"></div>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Soy Virgilio Pellegrino, capitán experimentado con más de 50,000 millas náuticas navegadas, incluyendo tres cruces del Atlántico y dos años y medio basado en el Caribe. Tengo más de una década en la industria náutica, con una sólida formación técnica como rigger profesional y mecánico.</p>
+                    <p>He trabajado en veleros que van desde 30 a 80 pies, tanto en entornos de charter como privados, priorizando siempre la gestión de embarcaciones, la seguridad y el bienestar de la tripulación.</p>
+                    <p>Hablo inglés con fluidez, español casi nativo e italiano nativo.</p>
+                </div>
+                <div class="about-image">
+                    <img src="fotovir.png" alt="Virgilio Pellegrino - Rigger y Mecánico Náutico">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Mis Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-wrench"></i></div>
+                    <h3>Servicios de Rigger</h3>
+                    <p>Instalación, mantenimiento y reparación de todo tipo de aparejos para embarcaciones de 30 a 100 pies. Inspecciones, ajustes y reparaciones profesionales.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Mecánica Náutica</h3>
+                    <p>Diagnóstico y solución de problemas mecánicos, mantenimiento de motores y sistemas auxiliares. Reparaciones confiables para mantener su embarcación en perfecto estado.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Refits y Restauración</h3>
+                    <p>Renovación completa de embarcaciones, incluyendo trabajo estructural, de aparejos y sistemas. Especializado en restauración de catamaranes y veleros clásicos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-ship"></i></div>
+                    <h3>Navegación y Traslados</h3>
+                    <p>Planificación de travesías, interpretación meteorológica y routing. Experiencia en navegación oceánica y en áreas remotas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencias -->
+    <section id="experiencias">
+        <div class="container">
+            <h2 class="section-title">Experiencias Destacadas</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2025 - Actualidad</h3>
+                        <p><strong>Rigger y Mecánico Freelance</strong><br>Servicios móviles de rigging y mecánica para veleros en Mallorca.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2023-2024</h3>
+                        <p><strong>One Palma</strong><br>Rigger para yates de alto rendimiento (50-100 pies).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2023</h3>
+                        <p><strong>G-Adventures</strong><br>Capitán de charter en yate de 70 pies, temporada de verano en el Mediterráneo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2022-2024</h3>
+                        <p><strong>Capitán Freelance</strong><br>Traslado de veleros (40-60 pies) por el Mediterráneo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2021</h3>
+                        <p><strong>D-Rigging</strong><br>Técnico de rigging en Palermo; inspecciones, ajustes y reparaciones.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2019</h3>
+                        <p><strong>Refit de Yate de Acero Sciarrelli</strong><br>Restauración completa estructural e interior de un velero clásico de acero.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-text"><strong>Teléfono:</strong> +34 692381489</div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-text"><strong>Email:</strong> virgilio.pellegrino@gmail.com</div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-text"><strong>Ubicación:</strong> San Carles de La Rapita en Invierno / Ibiza en verano</div>
+                    </div>
+                    <p>Estoy disponible para servicios en Mallorca y alrededores. No dude en contactarme para consultas o presupuestos.</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Envíame un Mensaje</h3>
+                    <form action="https://formspree.io/f/xzzaydvp" method="POST">
+                        <label>
+                            Nombre:
+                            <input type="nombre" name="nombre" required>
+                        </label>
+                        <label>
+                            Email:
+                            <input type="email" name="email" required>
+                        </label>
+                        <label>
+                            Deja tu mensaje aquí:
+                            <textarea name="message" rows="5" required></textarea>
+                        </label>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-anchor"></i>Virgilio Pellegrino</div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:virgilio.pellegrino@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Virgilio Pellegrino - Rigger y Mecánico Náutico. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+  // Script para enviar formulario y mostrar mensaje de agradecimiento
+  const contactForm = document.querySelector('.contact-form form');
+
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault(); // Evita que la página se recargue
+
+    const formData = new FormData(contactForm);
+    const action = contactForm.getAttribute('action');
+
+    try {
+      const response = await fetch(action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        alert('¡Gracias! Tu mensaje ha sido enviado.');
+        contactForm.reset();
+      } else {
+        alert('Hubo un problema al enviar el mensaje. Intenta nuevamente.');
+      }
+    } catch (error) {
+      alert('Hubo un error al enviar el mensaje. Intenta nuevamente.');
+      console.error(error);
+    }
+  });
+</script>
+</body>
+</html>
